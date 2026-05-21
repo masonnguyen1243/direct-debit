@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Direct Debit – TINGEE by HENO</title>
+  <link rel="icon" type="image/png" href="https://app.tingee.vn/assets/media/logo/logo-compact.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e12c43',
+            'primary-dark': '#c02134',
+            'primary-light': '#ff4d63',
+            'primary-bg': '#fff5f6',
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .animate-fade-up { animation: fadeUp .65s cubic-bezier(.22,1,.36,1) both; }
+    .animate-fade-in { animation: fadeIn .5s ease both; }
+
+    .delay-100 { animation-delay: .10s; }
+    .delay-200 { animation-delay: .20s; }
+    .delay-300 { animation-delay: .30s; }
+    .delay-400 { animation-delay: .40s; }
+
+    /* ── Reveal-on-scroll ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Navbar ── */
+    .nav-link {
+      position: relative;
+      color: #555;
+      font-weight: 500;
+      transition: color .2s;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; left: 50%; bottom: -4px;
+      width: 0; height: 2px;
+      background: #e12c43;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: width .25s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-link:hover { color: #e12c43; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Active nav link (set by JS on scroll) */
+    .nav-link.active {
+      color: #e12c43;
+      font-weight: 600;
+    }
+    .nav-link.active::after { width: 100%; }
+
+    /* Mobile nav active */
+    .mobile-nav-link.active {
+      color: #e12c43;
+      background: #fff5f6;
+      font-weight: 600;
+    }
+
+    /* ── Hero ── */
+    .hero-gradient {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 55%, #0f3460 100%);
+    }
+
+    /* ── Card hover ── */
+    .feature-card {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(225,44,67,.10);
+    }
+
+    /* ── API table row ── */
+    .api-row { transition: background .15s; }
+    .api-row:hover { background: #fff5f6; }
+
+    /* ── Method badges ── */
+    .badge-post   { background: #dcfce7; color: #15803d; }
+    .badge-get    { background: #dbeafe; color: #1d4ed8; }
+    .badge-delete { background: #fee2e2; color: #b91c1c; }
+
+    /* ── Step connector line ── */
+    .step-line {
+      width: 2px;
+      background: linear-gradient(to bottom, #e12c43 0%, #fca5a5 100%);
+    }
+
+    /* ── Scroll progress bar ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0;
+      background: linear-gradient(90deg, #e12c43, #ff6b7a);
+      transition: width .08s linear;
+      pointer-events: none;
+    }
+
+    /* ── Back to top ── */
+    #back-top {
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      transform: translateY(8px);
+    }
+    #back-top.show {
+      opacity: 1; pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* ── Accordion ── */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.22,1,.36,1);
+    }
+    .accordion-content.open { max-height: 2000px; }
+
+    /* ── Diagram ── */
+    .diagram-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #e12c43 #f1f5f9;
+    }
+    .diagram-wrap::-webkit-scrollbar { height: 4px; }
+    .diagram-wrap::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 2px; }
+    .diagram-wrap::-webkit-scrollbar-thumb { background: #e12c43; border-radius: 2px; }
+
+    /* Mobile responsive table */
+    @media (max-width: 640px) {
+      .table-responsive { font-size: 11px; }
+      .table-responsive td, .table-responsive th { padding: 8px 10px; }
+      .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- ════════════════════════════ NAVBAR ════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center shrink-0">
+      <img src="https://app.tingee.vn/assets/media/logo/logo_heno.png"
+           alt="HENO logo" class="h-8 w-auto object-contain" />
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex items-center gap-6 text-sm">
+      <a href="#overview"   class="nav-link" data-section="overview">Tổng quan</a>
+      <a href="#flow"       class="nav-link" data-section="flow">Luồng hoạt động</a>
+      <a href="#operations" class="nav-link" data-section="operations">Vận hành</a>
+      <a href="#api"        class="nav-link" data-section="api">Danh sách API</a>
+      <a href="#webhook"    class="nav-link" data-section="webhook">Webhook</a>
+      <a href="#contact"    class="nav-link" data-section="contact">Liên hệ</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="https://developers.tingee.vn/docs/direct-debit/" target="_blank"
+         class="hidden sm:inline-flex items-center gap-1.5 bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors whitespace-nowrap">
+        Tài liệu API
+      </a>
+      <!-- Hamburger -->
+      <button id="menu-btn" class="lg:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors" aria-label="Menu">
+        <svg id="icon-open"  width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white/98 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+      <a href="#overview"   class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="overview" onclick="closeMobileMenu()">Tổng quan</a>
+      <a href="#flow"       class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="flow" onclick="closeMobileMenu()">Luồng hoạt động</a>
+      <a href="#operations" class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="operations" onclick="closeMobileMenu()">Vận hành</a>
+      <a href="#api"        class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="api" onclick="closeMobileMenu()">Danh sách API</a>
+      <a href="#webhook"    class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="webhook" onclick="closeMobileMenu()">Webhook</a>
+      <a href="#contact"    class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="contact" onclick="closeMobileMenu()">Liên hệ</a>
+      <div class="pt-2 border-t border-gray-100 mt-1">
+        <a href="https://developers.tingee.vn/docs/direct-debit/" target="_blank"
+           class="block bg-primary text-white text-center py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-dark transition-colors">
+          Tài liệu API
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════ HERO ════════════════════════════ -->
+<section class="hero-gradient pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 rounded-full opacity-10 pointer-events-none" style="background:radial-gradient(circle,#e12c43,transparent)"></div>
+  <div class="absolute bottom-0 left-0 w-48 sm:w-64 h-48 sm:h-64 rounded-full opacity-5 pointer-events-none" style="background:radial-gradient(circle,#ff9aa2,transparent)"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <span class="inline-block bg-primary/20 text-primary-light text-xs font-semibold px-3 py-1 rounded-full mb-5 animate-fade-in">
+      Giải pháp thu phí tự động
+    </span>
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-5 animate-fade-up">
+      Direct Debit<br/>
+      <span class="text-primary-light">TINGEE by HENO</span>
+    </h1>
+    <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-10 animate-fade-up delay-200 px-2">
+      Cho phép Doanh nghiệp tự động trích nợ từ tài khoản ngân hàng của Khách hàng sau khi được ủy quyền hợp lệ — không cần thao tác thủ công mỗi kỳ.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center animate-fade-up delay-300 px-4 sm:px-0">
+      <a href="#overview" class="bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3 rounded-xl transition-colors text-sm sm:text-base">
+        Khám phá ngay
+      </a>
+      <a href="https://developers.tingee.vn/docs/direct-debit/" target="_blank"
+         class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3 rounded-xl border border-white/20 transition-colors text-sm sm:text-base">
+        Xem tài liệu API
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-14 grid grid-cols-3 gap-4 max-w-sm sm:max-w-lg mx-auto animate-fade-up delay-400">
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-white">8</div>
+        <div class="text-xs text-gray-400 mt-1">API endpoints</div>
+      </div>
+      <div class="text-center border-x border-white/10">
+        <div class="text-2xl sm:text-3xl font-extrabold text-white">2M</div>
+        <div class="text-xs text-gray-400 mt-1">VNĐ / hóa đơn</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-white">5M</div>
+        <div class="text-xs text-gray-400 mt-1">VNĐ / ngày</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ OVERVIEW ════════════════════════════ -->
+<section id="overview" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Tổng quan</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Tại sao chọn Direct Debit?</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Giải pháp lý tưởng cho các dịch vụ thu phí định kỳ, gia hạn gói cước hoặc thanh toán hóa đơn tự động.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+      <div class="feature-card reveal bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+        <div class="w-11 h-11 bg-primary-bg rounded-xl flex items-center justify-center mb-4">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e12c43" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582M20 20v-5h-.581M4.582 9A8 8 0 0120 15M19.418 15A8 8 0 014 9"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-gray-900 mb-2">Thu phí định kỳ</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Tự động trích nợ khi đến hạn hóa đơn mà không cần Khách hàng thực hiện thao tác thủ công.</p>
+      </div>
+      <div class="feature-card reveal delay-100 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+        <div class="w-11 h-11 bg-primary-bg rounded-xl flex items-center justify-center mb-4">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e12c43" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-gray-900 mb-2">Bảo mật tuyệt đối</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Quy trình ủy quyền tuân thủ nghiêm ngặt các tiêu chuẩn an toàn của hệ thống ngân hàng.</p>
+      </div>
+      <div class="feature-card reveal delay-200 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm sm:col-span-2 md:col-span-1">
+        <div class="w-11 h-11 bg-primary-bg rounded-xl flex items-center justify-center mb-4">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e12c43" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-gray-900 mb-2">Tối ưu dòng tiền</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Giảm tỷ lệ nợ đọng và tăng trải nghiệm khách hàng nhờ quy trình thanh toán không chạm.</p>
+      </div>
+    </div>
+
+    <!-- Transaction limits -->
+    <div class="mt-10 sm:mt-14 bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-6 sm:p-8 md:p-10 text-white reveal">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <p class="text-red-200 text-xs font-semibold uppercase tracking-widest mb-1">Hạn mức giao dịch</p>
+          <h3 class="text-xl sm:text-2xl font-bold">Theo quy định ngân hàng liên kết</h3>
+          <p class="text-white/70 text-sm mt-1">Áp dụng đồng nhất trên tất cả các ngân hàng hỗ trợ</p>
+        </div>
+        <div class="flex gap-6 sm:gap-8 shrink-0 w-full md:w-auto justify-center md:justify-end">
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-extrabold">2.000.000</div>
+            <div class="text-white/70 text-xs mt-1">VNĐ tối đa / hóa đơn</div>
+          </div>
+          <div class="w-px bg-white/20 self-stretch"></div>
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-extrabold">5.000.000</div>
+            <div class="text-white/70 text-xs mt-1">VNĐ tối đa / ngày</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FLOW DIAGRAMS ════════════════════════════ -->
+<section id="flow" class="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Quy trình</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Sơ đồ luồng hoạt động</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Quy trình gồm 2 giai đoạn: Giai đoạn 1 thực hiện <strong>một lần</strong> để thiết lập ủy quyền; Giai đoạn 2 <strong>lặp lại mỗi kỳ</strong> thanh toán mà không cần Khách hàng tham gia thêm.</p>
+    </div>
+
+    <!-- ── Phase 1 ── -->
+    <div class="reveal mb-8">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 sm:px-7 py-4 sm:py-5 border-b border-gray-100">
+          <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm sm:text-base">Giai đoạn 1 — Liên kết Tài khoản Ngân hàng</h3>
+            <p class="text-gray-400 text-xs mt-0.5">Thực hiện một lần duy nhất để thiết lập ủy quyền</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-6">
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="min-width:680px;width:100%;font-family:'Be Vietnam Pro',sans-serif">
+              <defs>
+                <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0,8 3,0 6" fill="#94a3b8"/>
+                </marker>
+                <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0,8 3,0 6" fill="#e12c43"/>
+                </marker>
+              </defs>
+
+              <!-- Actor header backgrounds -->
+              <rect x="20"  y="0" width="120" height="44" rx="0" fill="#f8fafc"/>
+              <rect x="220" y="0" width="120" height="44" rx="0" fill="#fff5f6"/>
+              <rect x="440" y="0" width="120" height="44" rx="0" fill="#f8fafc"/>
+              <rect x="660" y="0" width="120" height="44" rx="0" fill="#f8fafc"/>
+              <!-- separator line under headers -->
+              <line x1="0" y1="44" x2="900" y2="44" stroke="#e2e8f0" stroke-width="1"/>
+
+              <!-- Actor labels -->
+              <text x="80"  y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Doanh nghiệp</text>
+              <text x="280" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#e12c43">TINGEE</text>
+              <text x="500" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Khách hàng</text>
+              <text x="720" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Ngân hàng</text>
+
+              <!-- Lifelines -->
+              <line x1="80"  y1="44" x2="80"  y2="390" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="280" y1="44" x2="280" y2="390" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="500" y1="44" x2="500" y2="390" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="720" y1="44" x2="720" y2="390" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+              <!-- ① DN → TINGEE: POST register -->
+              <line x1="90" y1="84" x2="268" y2="84" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <rect x="100" y="70" width="158" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="179" y="86" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">POST /direct-debit/register</text>
+              <text x="34" y="88" font-size="10" fill="#94a3b8" font-weight="700">①</text>
+
+              <!-- ② TINGEE → KH: gửi link xác thực -->
+              <line x1="292" y1="130" x2="488" y2="130" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <rect x="302" y="116" width="176" height="24" rx="5" fill="#fff0f1" stroke="#fca5a5" stroke-width="1"/>
+              <text x="390" y="132" text-anchor="middle" font-size="10" fill="#e12c43" font-weight="600">Gửi link xác thực tài khoản</text>
+              <text x="34" y="134" font-size="10" fill="#94a3b8" font-weight="700">②</text>
+
+              <!-- ③ KH → NH: nhập TK + OTP -->
+              <line x1="512" y1="176" x2="708" y2="176" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <rect x="522" y="162" width="176" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="610" y="178" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Nhập số TK + xác nhận OTP</text>
+              <text x="34" y="180" font-size="10" fill="#94a3b8" font-weight="700">③</text>
+
+              <!-- ④ NH → TINGEE: xác nhận ủy quyền -->
+              <line x1="708" y1="222" x2="292" y2="222" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <rect x="460" y="208" width="182" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="551" y="224" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Xác nhận ủy quyền thành công</text>
+              <text x="34" y="226" font-size="10" fill="#94a3b8" font-weight="700">④</text>
+
+              <!-- ⑤ TINGEE → DN: Webhook register (dashed red) -->
+              <line x1="268" y1="268" x2="92" y2="268" stroke="#e12c43" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+              <rect x="96"  y="254" width="168" height="24" rx="5" fill="#fff0f1" stroke="#fca5a5" stroke-width="1"/>
+              <text x="180" y="270" text-anchor="middle" font-size="10" fill="#e12c43" font-weight="600">Webhook: register</text>
+              <text x="34" y="272" font-size="10" fill="#94a3b8" font-weight="700">⑤</text>
+
+              <!-- ⑥ TINGEE → KH: redirect returnUrl -->
+              <line x1="292" y1="314" x2="488" y2="314" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+              <rect x="302" y="300" width="176" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="390" y="316" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Redirect về returnUrl</text>
+              <text x="34" y="318" font-size="10" fill="#94a3b8" font-weight="700">⑥</text>
+
+              <!-- Legend -->
+              <line x1="640" y1="378" x2="660" y2="378" stroke="#64748b" stroke-width="1.5"/>
+              <text x="664" y="382" font-size="9" fill="#64748b">Luồng chính</text>
+              <line x1="730" y1="378" x2="750" y2="378" stroke="#e12c43" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <text x="754" y="382" font-size="9" fill="#e12c43">Webhook</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Phase 2 ── -->
+    <div class="reveal delay-100">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 sm:px-7 py-4 sm:py-5 border-b border-gray-100">
+          <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm sm:text-base">Giai đoạn 2 — Thanh toán Hóa đơn Tự động</h3>
+            <p class="text-gray-400 text-xs mt-0.5">Lặp lại mỗi kỳ thanh toán — Khách hàng không cần thao tác thêm</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-6">
+          <div class="diagram-wrap">
+            <svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" style="min-width:680px;width:100%;font-family:'Be Vietnam Pro',sans-serif">
+              <defs>
+                <marker id="arr-gray2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0,8 3,0 6" fill="#94a3b8"/>
+                </marker>
+                <marker id="arr-red2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0,8 3,0 6" fill="#e12c43"/>
+                </marker>
+                <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0,8 3,0 6" fill="#16a34a"/>
+                </marker>
+              </defs>
+
+              <!-- Actor header backgrounds -->
+              <rect x="20"  y="0" width="120" height="44" fill="#f8fafc"/>
+              <rect x="220" y="0" width="120" height="44" fill="#fff5f6"/>
+              <rect x="440" y="0" width="120" height="44" fill="#f8fafc"/>
+              <rect x="660" y="0" width="120" height="44" fill="#f8fafc"/>
+              <line x1="0" y1="44" x2="900" y2="44" stroke="#e2e8f0" stroke-width="1"/>
+
+              <text x="80"  y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Doanh nghiệp</text>
+              <text x="280" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#e12c43">TINGEE</text>
+              <text x="500" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Khách hàng</text>
+              <text x="720" y="27" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Ngân hàng</text>
+
+              <line x1="80"  y1="44" x2="80"  y2="468" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="280" y1="44" x2="280" y2="468" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="500" y1="44" x2="500" y2="468" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <line x1="720" y1="44" x2="720" y2="468" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+              <!-- ① DN → TINGEE: POST payment-bill -->
+              <line x1="90" y1="84" x2="268" y2="84" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="94"  y="70" width="170" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="179" y="86" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">POST /direct-debit/payment-bill</text>
+              <text x="34" y="88" font-size="10" fill="#94a3b8" font-weight="700">①</text>
+
+              <!-- ② TINGEE: kiểm tra xác thực -->
+              <rect x="210" y="108" width="140" height="30" rx="8" fill="#fff0f1" stroke="#fca5a5" stroke-width="1.5"/>
+              <text x="280" y="122" text-anchor="middle" font-size="10" fill="#e12c43" font-weight="700">Cần xác thực?</text>
+              <text x="34" y="130" font-size="10" fill="#94a3b8" font-weight="700">②</text>
+              <!-- diamond shape hint -->
+              <polygon points="280,106 295,123 280,140 265,123" fill="#fff0f1" stroke="#fca5a5" stroke-width="1.5"/>
+              <text x="280" y="128" text-anchor="middle" font-size="9" fill="#e12c43" font-weight="700">?</text>
+
+              <!-- YES path label -->
+              <text x="358" y="120" font-size="9" fill="#16a34a" font-weight="700">Có</text>
+              <!-- ③ TINGEE → KH: gửi OTP -->
+              <line x1="350" y1="123" x2="488" y2="165" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="356" y="148" width="120" height="24" rx="5" fill="#fff0f1" stroke="#fca5a5" stroke-width="1"/>
+              <text x="416" y="164" text-anchor="middle" font-size="10" fill="#e12c43" font-weight="600">Email / Zalo OTP</text>
+              <text x="34" y="168" font-size="10" fill="#94a3b8" font-weight="700">③</text>
+
+              <!-- ④ KH → TINGEE: xác nhận -->
+              <line x1="488" y1="206" x2="292" y2="206" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="310" y="192" width="166" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="393" y="208" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Xác nhận thanh toán</text>
+              <text x="34" y="210" font-size="10" fill="#94a3b8" font-weight="700">④</text>
+
+              <!-- NO path label -->
+              <text x="200" y="162" font-size="9" fill="#374151" font-weight="700">Không</text>
+              <line x1="210" y1="138" x2="210" y2="250" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="210" y1="250" x2="268" y2="250" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr-gray2)"/>
+
+              <!-- ⑤ TINGEE → NH: yêu cầu trích nợ -->
+              <line x1="292" y1="256" x2="708" y2="256" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="420" y="242" width="170" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="505" y="258" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Yêu cầu trích nợ tài khoản</text>
+              <text x="34" y="260" font-size="10" fill="#94a3b8" font-weight="700">⑤</text>
+
+              <!-- ⑥ NH → TINGEE: kết quả -->
+              <line x1="708" y1="302" x2="292" y2="302" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="428" y="288" width="268" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="562" y="304" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Kết quả giao dịch (thành công / thất bại)</text>
+              <text x="34" y="306" font-size="10" fill="#94a3b8" font-weight="700">⑥</text>
+
+              <!-- ⑦ TINGEE → DN: Webhook transaction (dashed red) -->
+              <line x1="268" y1="348" x2="92" y2="348" stroke="#e12c43" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red2)"/>
+              <rect x="94"  y="334" width="170" height="24" rx="5" fill="#fff0f1" stroke="#fca5a5" stroke-width="1"/>
+              <text x="179" y="350" text-anchor="middle" font-size="10" fill="#e12c43" font-weight="600">Webhook: transaction</text>
+              <text x="34" y="352" font-size="10" fill="#94a3b8" font-weight="700">⑦</text>
+
+              <!-- ⑧ TINGEE → DN: phản hồi API -->
+              <line x1="268" y1="394" x2="92" y2="394" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr-gray2)"/>
+              <rect x="94"  y="380" width="170" height="24" rx="5" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+              <text x="179" y="396" text-anchor="middle" font-size="10" fill="#334155" font-weight="500">Phản hồi kết quả API</text>
+              <text x="34" y="398" font-size="10" fill="#94a3b8" font-weight="700">⑧</text>
+
+              <!-- Legend -->
+              <line x1="600" y1="458" x2="620" y2="458" stroke="#64748b" stroke-width="1.5"/>
+              <text x="624" y="462" font-size="9" fill="#64748b">Luồng chính</text>
+              <line x1="690" y1="458" x2="710" y2="458" stroke="#e12c43" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <text x="714" y="462" font-size="9" fill="#e12c43">Webhook</text>
+              <line x1="764" y1="458" x2="784" y2="458" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="788" y="462" font-size="9" fill="#94a3b8">Nhánh điều kiện</text>
+            </svg>
+          </div>
+          <p class="text-xs text-gray-400 mt-3 text-center">Bước ③④ chỉ xảy ra khi Khách hàng bật chế độ xác thực trước khi thanh toán</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ OPERATIONS ════════════════════════════ -->
+<section id="operations" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Vận hành</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Hướng dẫn tích hợp</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Bốn nghiệp vụ cốt lõi cần triển khai để vận hành dịch vụ Direct Debit.</p>
+    </div>
+
+    <div class="space-y-4">
+
+      <!-- 3.1 -->
+      <div class="reveal bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.1</span>
+            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Liên kết tài khoản ngân hàng</h3>
+          </div>
+          <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-4 mb-5 leading-relaxed">Dùng để người dùng đăng ký và ủy quyền liên kết tài khoản ngân hàng. Sau khi khởi tạo thành công, TINGEE gửi về một đường link để Khách hàng điền thông tin tài khoản cần liên kết.</p>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Request</p>
+                <div class="overflow-x-auto rounded-xl border border-gray-100">
+                  <table class="w-full text-sm table-responsive">
+                    <thead><tr class="bg-gray-50 text-gray-400 text-xs">
+                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
+                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-gray-50">
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">phone</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">bankBin</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">accountName</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Response</p>
+                <div class="overflow-x-auto rounded-xl border border-gray-100">
+                  <table class="w-full text-sm table-responsive">
+                    <thead><tr class="bg-gray-50 text-gray-400 text-xs">
+                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
+                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Mô tả</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-gray-50">
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">code</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">"00" = thành công</td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">message</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">Thông báo chi tiết</td></tr>
+                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">data</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">URL điều hướng liên kết</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.2 -->
+      <div class="reveal delay-100 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.2</span>
+            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Thanh toán hóa đơn</h3>
+          </div>
+          <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-4 mb-3">Dùng để khởi tạo yêu cầu thanh toán hóa đơn từ tài khoản đã liên kết.</p>
+            <div class="flex flex-col sm:flex-row gap-3 mb-5">
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-gray-600 bg-blue-50 rounded-lg px-3 sm:px-4 py-3 flex-1">
+                <span class="text-blue-500 shrink-0 mt-0.5">ℹ</span>
+                <span><strong>Cần xác thực:</strong> TINGEE gửi Email hoặc Zalo cho Khách hàng xác nhận.</span>
+              </div>
+              <div class="flex items-start gap-2 text-xs sm:text-sm text-gray-600 bg-green-50 rounded-lg px-3 sm:px-4 py-3 flex-1">
+                <span class="text-green-500 shrink-0 mt-0.5">✓</span>
+                <span><strong>Không xác thực:</strong> Hóa đơn được tự động khấu trừ.</span>
+              </div>
+            </div>
+            <div class="overflow-x-auto rounded-xl border border-gray-100">
+              <table class="w-full text-sm table-responsive">
+                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                </tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">amount</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Giá trị hóa đơn cần thanh toán</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">description</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Nội dung thanh toán</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">partnerCode</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mặc định: "one-pay"</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">serviceProviderName</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Tên Doanh nghiệp</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">additionalData</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">object</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Thông tin bổ sung</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.3 -->
+      <div class="reveal delay-200 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.3</span>
+            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hoàn tiền giao dịch</h3>
+          </div>
+          <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-4 mb-5 leading-relaxed">Dùng để hoàn tiền giao dịch đã thanh toán qua dịch vụ Direct Debit. Hỗ trợ hoàn tiền toàn bộ hoặc hoàn tiền một phần giá trị giao dịch.</p>
+            <div class="overflow-x-auto rounded-xl border border-gray-100">
+              <table class="w-full text-sm table-responsive">
+                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                </tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">transactionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã giao dịch cần hoàn</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">amount</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">number</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Số tiền cần hoàn</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.4 -->
+      <div class="reveal delay-300 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.4</span>
+            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hủy liên kết tài khoản</h3>
+          </div>
+          <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="accordion-content">
+          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-4 mb-3 leading-relaxed">Dùng để hủy liên kết tài khoản với dịch vụ Direct Debit.</p>
+            <p class="text-xs sm:text-sm text-amber-800 bg-amber-50 border border-amber-100 rounded-lg px-4 py-3 mb-5">Trường hợp tài khoản cần xác thực trước khi hủy: TINGEE trả về đường dẫn để Khách hàng nhập mã OTP.</p>
+            <div class="overflow-x-auto rounded-xl border border-gray-100">
+              <table class="w-full text-sm table-responsive">
+                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
+                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                </tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ API LIST ════════════════════════════ -->
+<section id="api" class="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Tích hợp</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Danh sách API</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Tất cả các endpoint của dịch vụ Direct Debit</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6 reveal">
+      <div class="bg-white rounded-xl border border-gray-100 px-4 sm:px-5 py-4">
+        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">UAT (Kiểm thử)</p>
+        <code class="text-xs sm:text-sm text-gray-700 font-mono break-all">https://uat-open-api.tingee.vn</code>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-100 px-4 sm:px-5 py-4">
+        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Production</p>
+        <p class="text-sm text-gray-400 italic">Liên hệ đội kỹ thuật TINGEE để nhận</p>
+      </div>
+    </div>
+
+    <div class="reveal bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm" style="min-width:480px">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider w-20 sm:w-24">Method</th>
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider">Endpoint</th>
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider hide-mobile">Mô tả</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50">
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-post text-xs font-bold px-1.5 py-0.5 rounded">POST</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/register</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Đăng ký và liên kết tài khoản</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-post text-xs font-bold px-1.5 py-0.5 rounded">POST</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/payment-bill</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Thực hiện yêu cầu trích nợ</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-post text-xs font-bold px-1.5 py-0.5 rounded">POST</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/refund</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Hoàn tiền giao dịch</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-delete text-xs font-bold px-1.5 py-0.5 rounded">DEL</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/delete-subscription</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Hủy liên kết tài khoản</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-get text-xs font-bold px-1.5 py-0.5 rounded">GET</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/get-subscription-status</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Kiểm tra trạng thái liên kết</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-get text-xs font-bold px-1.5 py-0.5 rounded">GET</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/get-transaction-status</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Tra cứu kết quả giao dịch</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-get text-xs font-bold px-1.5 py-0.5 rounded">GET</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/get-paging-transactions</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Lịch sử giao dịch ghi nợ</td></tr>
+            <tr class="api-row"><td class="px-4 sm:px-6 py-3.5"><span class="badge-post text-xs font-bold px-1.5 py-0.5 rounded">POST</span></td><td class="px-4 sm:px-6 py-3.5 font-mono text-xs text-primary">/v1/direct-debit/edit-confirm-payment-method</td><td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Cập nhật phương thức xác nhận</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ WEBHOOK ════════════════════════════ -->
+<section id="webhook" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Thông báo tự động</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Webhook (IPN)</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">TINGEE gửi webhook về endpoint của Doanh nghiệp khi xảy ra các sự kiện quan trọng.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-10">
+      <div class="reveal">
+        <h3 class="font-bold text-gray-900 mb-4 text-sm sm:text-base">Lợi ích khi dùng Webhook</h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="10" height="8" fill="none" viewBox="0 0 10 8"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-800">Đồng bộ trạng thái</p>
+              <p class="text-xs text-gray-500 mt-0.5">Cập nhật kết quả thanh toán, liên kết tài khoản theo thời gian thực.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="10" height="8" fill="none" viewBox="0 0 10 8"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-800">Tự động hóa nghiệp vụ</p>
+              <p class="text-xs text-gray-500 mt-0.5">Chủ động xử lý ngay khi có thông báo từ hệ thống TINGEE.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="10" height="8" fill="none" viewBox="0 0 10 8"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-800">Retry tự động</p>
+              <p class="text-xs text-gray-500 mt-0.5">Nếu gửi thất bại, hệ thống TINGEE tự động thử lại theo cơ chế Retry.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3 text-xs sm:text-sm text-amber-800">
+          Doanh nghiệp cần cung cấp <strong>URL nhận webhook</strong> cho đội ngũ kỹ thuật TINGEE để cấu hình trước khi tích hợp.
+        </div>
+      </div>
+
+      <div class="reveal delay-100">
+        <h3 class="font-bold text-gray-900 mb-4 text-sm sm:text-base">Luồng xử lý</h3>
+        <div>
+          <div class="flex gap-3 sm:gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+              <div class="step-line w-0.5 flex-1 my-1"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-gray-800">Sự kiện xảy ra</p>
+              <p class="text-xs text-gray-500 mt-0.5">Liên kết, Thanh toán, Hủy liên kết hoặc Cập nhật phương thức xác nhận.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 sm:gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
+              <div class="step-line w-0.5 flex-1 my-1"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-gray-800">Gửi thông báo</p>
+              <p class="text-xs text-gray-500 mt-0.5">TINGEE gửi POST request chứa payload đến URL đã cấu hình.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 sm:gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">3</div>
+              <div class="step-line w-0.5 flex-1 my-1"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-gray-800">Xác thực chữ ký</p>
+              <p class="text-xs text-gray-500 mt-0.5">Kiểm tra <code class="text-primary bg-primary-bg px-1 rounded text-xs">x-signature</code> trong Header để đảm bảo dữ liệu từ TINGEE.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 sm:gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">4</div>
+              <div class="step-line w-0.5 flex-1 my-1"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-gray-800">Xử lý & Phản hồi</p>
+              <p class="text-xs text-gray-500 mt-0.5">Doanh nghiệp xử lý dữ liệu và phản hồi TINGEE (Status 200).</p>
+            </div>
+          </div>
+          <div class="flex gap-3 sm:gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-gray-200 text-gray-500 text-xs font-bold flex items-center justify-center shrink-0">5</div>
+            </div>
+            <div class="pb-1">
+              <p class="text-sm font-semibold text-gray-800">Retry tự động</p>
+              <p class="text-xs text-gray-500 mt-0.5">Hệ thống tự động thử lại nếu không nhận được phản hồi hợp lệ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event types -->
+    <div class="reveal">
+      <h3 class="font-bold text-gray-900 mb-4 text-sm sm:text-base">Các loại sự kiện</h3>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-gray-50 rounded-xl p-4 sm:p-5 border border-gray-100">
+          <code class="text-xs font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded mb-2 inline-block">register</code>
+          <p class="text-xs sm:text-sm text-gray-600">Khách hàng hoàn tất liên kết tài khoản. Payload chứa: requestId, subscriptionId, tokenRef, bankBin, thông tin khách hàng, số tài khoản, trạng thái.</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 sm:p-5 border border-gray-100">
+          <code class="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-0.5 rounded mb-2 inline-block">transaction</code>
+          <p class="text-xs sm:text-sm text-gray-600">Hệ thống xử lý xong yêu cầu khấu trừ tiền. Payload chứa: requestId, mã giao dịch, số tiền, nội dung, ngày giao dịch, trạng thái.</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 sm:p-5 border border-gray-100">
+          <code class="text-xs font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded mb-2 inline-block">edit</code>
+          <p class="text-xs sm:text-sm text-gray-600">Khách hàng cập nhật phương thức xác nhận thanh toán. Payload chứa: requestId, subscriptionId, tokenRef, cài đặt Email/Zalo, trạng thái.</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 sm:p-5 border border-gray-100">
+          <code class="text-xs font-bold bg-red-100 text-red-700 px-2 py-0.5 rounded mb-2 inline-block">delete</code>
+          <p class="text-xs sm:text-sm text-gray-600">Hủy liên kết tài khoản hoàn tất. Payload chứa: requestId, subscriptionId, tokenRef, trạng thái.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ERROR CODES ════════════════════════════ -->
+<section class="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Xử lý lỗi</p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Mã lỗi thường gặp</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Áp dụng đồng nhất trên tất cả các API của Direct Debit.</p>
+    </div>
+    <div class="reveal bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm" style="min-width:400px">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider w-16 sm:w-20">Mã</th>
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider">Mô tả</th>
+              <th class="text-left px-4 sm:px-6 py-4 font-semibold text-gray-400 text-xs uppercase tracking-wider hide-mobile">Hướng xử lý</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+              <td class="px-4 sm:px-6 py-3.5"><span class="text-green-600 font-bold font-mono text-sm">00</span></td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-700 text-sm">Thành công</td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-400 text-xs hide-mobile">—</td>
+            </tr>
+            <tr class="border-b border-gray-50 bg-gray-50/50 hover:bg-gray-50 transition-colors">
+              <td class="px-4 sm:px-6 py-3.5"><span class="text-amber-600 font-bold font-mono text-sm">90</span></td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-700 text-sm">Sai format timestamp</td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Kiểm tra format <code class="bg-gray-100 px-1 rounded">yyyyMMddHHmmssSSS</code> (UTC+7)</td>
+            </tr>
+            <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+              <td class="px-4 sm:px-6 py-3.5"><span class="text-amber-600 font-bold font-mono text-sm">91</span></td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-700 text-sm">Request quá hạn</td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Kiểm tra thời gian gửi request</td>
+            </tr>
+            <tr class="border-b border-gray-50 bg-gray-50/50 hover:bg-gray-50 transition-colors">
+              <td class="px-4 sm:px-6 py-3.5"><span class="text-red-600 font-bold font-mono text-sm">97</span></td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-700 text-sm">Sai chữ ký</td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Kiểm tra Secret Key và logic tạo Signature</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 sm:px-6 py-3.5"><span class="text-gray-400 font-bold font-mono text-sm">Others</span></td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-700 text-sm">Lỗi khác</td>
+              <td class="px-4 sm:px-6 py-3.5 text-gray-500 text-xs hide-mobile">Xem tại <a href="https://developers.tingee.vn/docs/error-list" target="_blank" class="text-primary hover:underline">/docs/error-list</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ CONTACT ════════════════════════════ -->
+<section id="contact" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center reveal">
+    <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Hỗ trợ</p>
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">Thông tin liên hệ</h2>
+    <p class="text-gray-500 mb-10 max-w-lg mx-auto text-sm sm:text-base">Đội ngũ kỹ thuật TINGEE sẵn sàng hỗ trợ bạn trong quá trình tích hợp.</p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
+      <a href="mailto:developer@heno.vn" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all">
+        <p class="text-xs text-gray-400 font-medium mb-1">Email</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors break-all">developer@heno.vn</p>
+      </a>
+      <a href="https://tingee.vn" target="_blank" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all">
+        <p class="text-xs text-gray-400 font-medium mb-1">Website</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors">tingee.vn</p>
+      </a>
+      <a href="https://developers.tingee.vn" target="_blank" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all col-span-2 sm:col-span-1">
+        <p class="text-xs text-gray-400 font-medium mb-1">Tài liệu API</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors">developers.tingee.vn</p>
+      </a>
+      <a href="https://t.me/tingeesupport" target="_blank" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all">
+        <p class="text-xs text-gray-400 font-medium mb-1">Telegram</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors">@tingeesupport</p>
+      </a>
+      <a href="https://zalo.me/1839044937471013548" target="_blank" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all">
+        <p class="text-xs text-gray-400 font-medium mb-1">Zalo OA</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors">TINGEE Support</p>
+      </a>
+      <a href="https://github.com/tingeehub" target="_blank" class="group bg-gray-50 hover:bg-primary-bg border border-gray-100 hover:border-primary/20 rounded-2xl p-4 sm:p-5 text-center transition-all">
+        <p class="text-xs text-gray-400 font-medium mb-1">GitHub</p>
+        <p class="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors">tingeehub</p>
+      </a>
+    </div>
+
+    <a href="https://app.tingee.vn/m/developers" target="_blank"
+       class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-7 sm:px-8 py-3 sm:py-3.5 rounded-xl transition-colors text-sm sm:text-base">
+      Lấy API key ngay
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<footer class="bg-gray-900 text-gray-400 py-8 sm:py-10 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <img src="https://app.tingee.vn/assets/media/logo/logo_heno.png" alt="HENO" class="h-7 w-auto object-contain brightness-0 invert opacity-70"/>
+    <p class="text-xs text-center order-last sm:order-none">© 2026 TINGEE – HENO Corporation.
+      <a href="https://developers.tingee.vn/docs/direct-debit/" target="_blank" class="text-primary hover:underline ml-1">developers.tingee.vn</a>
+    </p>
+    <div class="flex gap-4 text-xs">
+      <a href="https://tingee.vn" target="_blank" class="hover:text-white transition-colors">Website</a>
+      <a href="https://developers.tingee.vn" target="_blank" class="hover:text-white transition-colors">Docs</a>
+      <a href="https://github.com/tingeehub" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  class="fixed bottom-5 right-5 z-40 w-10 h-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary-dark transition-colors">
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+
+<!-- ════════════════════════════ SCRIPTS ════════════════════════════ -->
+<script>
+(function () {
+  // ── Mobile menu toggle ──
+  const menuBtn    = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen   = document.getElementById('icon-open');
+  const iconClose  = document.getElementById('icon-close');
+
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden', !isHidden);
+    iconOpen.classList.toggle('hidden', isHidden);
+    iconClose.classList.toggle('hidden', !isHidden);
+  });
+
+  window.closeMobileMenu = function () {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  };
+
+  // ── Navbar shadow ──
+  const navbar = document.getElementById('navbar');
+  function onScroll() {
+    navbar.classList.toggle('shadow-md', window.scrollY > 10);
+  }
+
+  // ── Progress bar ──
+  const progressBar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const total = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = (total > 0 ? (window.scrollY / total * 100) : 0) + '%';
+  }
+
+  // ── Back to top ──
+  const backTop = document.getElementById('back-top');
+  function updateBackTop() {
+    backTop.classList.toggle('show', window.scrollY > 400);
+  }
+
+  // ── Active nav on scroll (IntersectionObserver) ──
+  const sections  = ['overview', 'flow', 'operations', 'api', 'webhook', 'contact'];
+  const navLinks  = document.querySelectorAll('.nav-link[data-section]');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link[data-section]');
+
+  function setActive(id) {
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+    mobileLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+  }
+
+  // Use scroll position to determine which section is "in view"
+  function updateActiveSection() {
+    const offset = 90; // navbar height + buffer
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= offset) current = id;
+    });
+    if (current) setActive(current);
+    else navLinks.forEach(a => a.classList.remove('active')); // above all sections
+  }
+
+  // Batch scroll handler
+  window.addEventListener('scroll', () => {
+    onScroll();
+    updateProgress();
+    updateBackTop();
+    updateActiveSection();
+  }, { passive: true });
+
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+    }),
+    { threshold: 0.10 }
+  );
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ── Accordion (smooth max-height) ──
+  document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const chevron = btn.querySelector('.chevron');
+      const isOpen  = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
+  });
+})();
+</script>
+</body>
+</html>
