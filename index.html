@@ -555,10 +555,33 @@
 <!-- ════════════════════════════ OPERATIONS ════════════════════════════ -->
 <section id="operations" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12 reveal">
+    <div class="text-center mb-4 reveal">
       <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-2">Vận hành</p>
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Hướng dẫn tích hợp</h2>
       <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">Bốn nghiệp vụ cốt lõi cần triển khai để vận hành dịch vụ Direct Debit.</p>
+    </div>
+
+    <!-- Step overview pills -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 reveal">
+      <div class="flex items-center gap-2 bg-primary-bg text-primary text-xs font-semibold px-3 py-1.5 rounded-full">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        3.1 Liên kết tài khoản
+      </div>
+      <svg class="w-4 h-4 text-gray-300 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <div class="flex items-center gap-2 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        3.2 Thanh toán hóa đơn
+      </div>
+      <svg class="w-4 h-4 text-gray-300 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <div class="flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+        3.3 Hoàn tiền
+      </div>
+      <svg class="w-4 h-4 text-gray-300 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <div class="flex items-center gap-2 bg-red-50 text-red-600 text-xs font-semibold px-3 py-1.5 rounded-full">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+        3.4 Hủy liên kết
+      </div>
     </div>
 
     <div class="space-y-4">
@@ -567,48 +590,115 @@
       <div class="reveal bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
         <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.1</span>
-            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Liên kết tài khoản ngân hàng</h3>
+            <div class="w-10 h-10 rounded-xl bg-primary-bg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">Bước 3.1</p>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-900">Liên kết tài khoản ngân hàng</h3>
+            </div>
           </div>
           <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="accordion-content">
-          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm mt-4 mb-5 leading-relaxed">Dùng để người dùng đăng ký và ủy quyền liên kết tài khoản ngân hàng. Sau khi khởi tạo thành công, TINGEE gửi về một đường link để Khách hàng điền thông tin tài khoản cần liên kết.</p>
+          <div class="px-5 sm:px-7 pb-7 border-t border-gray-100">
+
+            <!-- Mô tả + luồng -->
+            <p class="text-gray-600 text-sm mt-5 mb-4 leading-relaxed">Người dùng đăng ký và ủy quyền liên kết tài khoản ngân hàng. Sau khi khởi tạo thành công, TINGEE trả về đường link để Khách hàng điền thông tin tài khoản.</p>
+
+            <!-- Flow steps -->
+            <div class="flex flex-wrap items-center gap-1.5 mb-6">
+              <div class="flex items-center gap-1.5 bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-600 font-medium">
+                <span class="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold shrink-0">1</span>
+                Doanh nghiệp gửi request
+              </div>
+              <svg class="w-3.5 h-3.5 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              <div class="flex items-center gap-1.5 bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-600 font-medium">
+                <span class="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold shrink-0">2</span>
+                TINGEE trả về link liên kết
+              </div>
+              <svg class="w-3.5 h-3.5 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              <div class="flex items-center gap-1.5 bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-600 font-medium">
+                <span class="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold shrink-0">3</span>
+                Khách hàng xác nhận trên link
+              </div>
+            </div>
+
             <div class="grid sm:grid-cols-2 gap-5">
+              <!-- Request -->
               <div>
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Request</p>
-                <div class="overflow-x-auto rounded-xl border border-gray-100">
-                  <table class="w-full text-sm table-responsive">
-                    <thead><tr class="bg-gray-50 text-gray-400 text-xs">
-                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
-                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
-                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
-                    </tr></thead>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-2 h-2 rounded-full bg-primary"></span>
+                  <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Request</p>
+                </div>
+                <div class="rounded-xl border border-gray-100 overflow-hidden">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="bg-gray-50 text-gray-400 text-xs">
+                        <th class="text-left px-4 py-2.5 font-semibold">Trường</th>
+                        <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                        <th class="text-left px-4 py-2.5 font-semibold">Bắt buộc</th>
+                      </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-50">
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">phone</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">bankBin</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">accountName</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td></tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">requestId</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td>
+                        <td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td>
+                      </tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">phone</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td>
+                        <td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td>
+                      </tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">returnUrl</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td>
+                        <td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td>
+                      </tr>
+                      <tr class="bg-gray-50/50">
+                        <td class="px-4 py-2.5 font-mono text-xs text-gray-400">bankBin</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td>
+                        <td class="px-4 py-2.5"><span class="text-gray-400 text-xs">Không</span></td>
+                      </tr>
+                      <tr class="bg-gray-50/50">
+                        <td class="px-4 py-2.5 font-mono text-xs text-gray-400">accountName</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td>
+                        <td class="px-4 py-2.5"><span class="text-gray-400 text-xs">Không</span></td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
+              <!-- Response -->
               <div>
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Response</p>
-                <div class="overflow-x-auto rounded-xl border border-gray-100">
-                  <table class="w-full text-sm table-responsive">
-                    <thead><tr class="bg-gray-50 text-gray-400 text-xs">
-                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
-                      <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Mô tả</th>
-                    </tr></thead>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                  <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Response</p>
+                </div>
+                <div class="rounded-xl border border-gray-100 overflow-hidden">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="bg-gray-50 text-gray-400 text-xs">
+                        <th class="text-left px-4 py-2.5 font-semibold">Trường</th>
+                        <th class="text-left px-4 py-2.5 font-semibold">Mô tả</th>
+                      </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-50">
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">code</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">"00" = thành công</td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">message</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">Thông báo chi tiết</td></tr>
-                      <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">data</td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs">URL điều hướng liên kết</td></tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-green-600 font-semibold">code</td>
+                        <td class="px-4 py-2.5 text-gray-500 text-xs"><span class="font-mono bg-green-50 text-green-700 px-1.5 py-0.5 rounded">"00"</span> = thành công</td>
+                      </tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-green-600 font-semibold">message</td>
+                        <td class="px-4 py-2.5 text-gray-500 text-xs">Thông báo chi tiết</td>
+                      </tr>
+                      <tr class="bg-white">
+                        <td class="px-4 py-2.5 font-mono text-xs text-green-600 font-semibold">data</td>
+                        <td class="px-4 py-2.5 text-gray-500 text-xs">URL điều hướng liên kết</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -622,44 +712,68 @@
       <div class="reveal delay-100 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
         <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.2</span>
-            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Thanh toán hóa đơn</h3>
+            <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">Bước 3.2</p>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-900">Thanh toán hóa đơn</h3>
+            </div>
           </div>
           <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="accordion-content">
-          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm mt-4 mb-3">Dùng để khởi tạo yêu cầu thanh toán hóa đơn từ tài khoản đã liên kết.</p>
-            <div class="flex flex-col sm:flex-row gap-3 mb-5">
-              <div class="flex items-start gap-2 text-xs sm:text-sm text-gray-600 bg-blue-50 rounded-lg px-3 sm:px-4 py-3 flex-1">
-                <span class="text-blue-500 shrink-0 mt-0.5">ℹ</span>
-                <span><strong>Cần xác thực:</strong> TINGEE gửi Email hoặc Zalo cho Khách hàng xác nhận.</span>
+          <div class="px-5 sm:px-7 pb-7 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-5 mb-4 leading-relaxed">Khởi tạo yêu cầu thanh toán hóa đơn từ tài khoản đã liên kết. TINGEE hỗ trợ hai chế độ xử lý tuỳ theo cấu hình.</p>
+
+            <!-- Hai chế độ nổi bật -->
+            <div class="grid sm:grid-cols-2 gap-3 mb-6">
+              <div class="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3.5">
+                <div class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-blue-700 mb-1">Cần xác thực</p>
+                  <p class="text-xs text-blue-600 leading-relaxed">TINGEE gửi Email hoặc Zalo cho Khách hàng xác nhận trước khi khấu trừ.</p>
+                </div>
               </div>
-              <div class="flex items-start gap-2 text-xs sm:text-sm text-gray-600 bg-green-50 rounded-lg px-3 sm:px-4 py-3 flex-1">
-                <span class="text-green-500 shrink-0 mt-0.5">✓</span>
-                <span><strong>Không xác thực:</strong> Hóa đơn được tự động khấu trừ.</span>
+              <div class="flex items-start gap-3 bg-green-50 border border-green-100 rounded-xl px-4 py-3.5">
+                <div class="w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-green-700 mb-1">Không xác thực</p>
+                  <p class="text-xs text-green-600 leading-relaxed">Hóa đơn được tự động khấu trừ ngay, không cần thao tác thêm từ Khách hàng.</p>
+                </div>
               </div>
             </div>
-            <div class="overflow-x-auto rounded-xl border border-gray-100">
-              <table class="w-full text-sm table-responsive">
-                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
-                </tr></thead>
+
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Tham số Request</p>
+            </div>
+            <div class="rounded-xl border border-gray-100 overflow-hidden mb-2">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 text-gray-400 text-xs">
+                    <th class="text-left px-4 py-2.5 font-semibold">Trường</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                    <th class="text-left px-4 py-2.5 font-semibold">Bắt buộc</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                  </tr>
+                </thead>
                 <tbody class="divide-y divide-gray-50">
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">amount</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Giá trị hóa đơn cần thanh toán</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">description</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Nội dung thanh toán</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">partnerCode</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mặc định: "one-pay"</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">serviceProviderName</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Tên Doanh nghiệp</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-gray-400">additionalData</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">object</td><td class="px-3 sm:px-4 py-2"><span class="text-gray-400 text-xs">Không</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Thông tin bổ sung</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">requestId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">subscriptionId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">tokenRef</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">amount</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Giá trị hóa đơn cần thanh toán</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">description</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Nội dung thanh toán</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">partnerCode</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Mặc định: <span class="font-mono bg-gray-100 px-1 rounded">"one-pay"</span></td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">serviceProviderName</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Tên Doanh nghiệp</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">returnUrl</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
+                  <tr class="bg-gray-50/50"><td class="px-4 py-2.5 font-mono text-xs text-gray-400">additionalData</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">object</td><td class="px-4 py-2.5"><span class="text-gray-400 text-xs">Không</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Thông tin bổ sung</td></tr>
                 </tbody>
               </table>
             </div>
@@ -671,29 +785,53 @@
       <div class="reveal delay-200 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
         <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.3</span>
-            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hoàn tiền giao dịch</h3>
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">Bước 3.3</p>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hoàn tiền giao dịch</h3>
+            </div>
           </div>
           <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="accordion-content">
-          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm mt-4 mb-5 leading-relaxed">Dùng để hoàn tiền giao dịch đã thanh toán qua dịch vụ Direct Debit. Hỗ trợ hoàn tiền toàn bộ hoặc hoàn tiền một phần giá trị giao dịch.</p>
-            <div class="overflow-x-auto rounded-xl border border-gray-100">
-              <table class="w-full text-sm table-responsive">
-                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
-                </tr></thead>
+          <div class="px-5 sm:px-7 pb-7 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-5 mb-4 leading-relaxed">Hoàn tiền giao dịch đã thanh toán qua dịch vụ Direct Debit. Hỗ trợ <strong>hoàn toàn bộ</strong> hoặc <strong>hoàn một phần</strong> giá trị giao dịch.</p>
+
+            <!-- Ghi chú hoàn tiền -->
+            <div class="flex flex-wrap gap-3 mb-5">
+              <div class="flex items-center gap-2 text-xs text-blue-700 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Hoàn toàn bộ: <code class="font-mono ml-1">amount = số tiền gốc</code>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-blue-700 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Hoàn một phần: <code class="font-mono ml-1">amount &lt; số tiền gốc</code>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Tham số Request</p>
+            </div>
+            <div class="rounded-xl border border-gray-100 overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 text-gray-400 text-xs">
+                    <th class="text-left px-4 py-2.5 font-semibold">Trường</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                    <th class="text-left px-4 py-2.5 font-semibold">Bắt buộc</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                  </tr>
+                </thead>
                 <tbody class="divide-y divide-gray-50">
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">transactionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã giao dịch cần hoàn</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">amount</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">number</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Số tiền cần hoàn</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">subscriptionId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">tokenRef</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">transactionId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Mã giao dịch gốc cần hoàn</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">amount</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">number</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Số tiền cần hoàn (toàn bộ hoặc một phần)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -705,30 +843,50 @@
       <div class="reveal delay-300 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
         <button class="accordion-btn w-full flex items-center justify-between gap-3 px-5 sm:px-7 py-4 sm:py-5 hover:bg-gray-50 transition-colors text-left">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-primary-bg text-primary font-bold text-xs flex items-center justify-center shrink-0">3.4</span>
-            <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hủy liên kết tài khoản</h3>
+            <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-medium mb-0.5">Bước 3.4</p>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-900">Hủy liên kết tài khoản</h3>
+            </div>
           </div>
           <svg class="chevron w-4 h-4 text-gray-400 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="accordion-content">
-          <div class="px-5 sm:px-7 pb-6 border-t border-gray-100">
-            <p class="text-gray-600 text-sm mt-4 mb-3 leading-relaxed">Dùng để hủy liên kết tài khoản với dịch vụ Direct Debit.</p>
-            <p class="text-xs sm:text-sm text-amber-800 bg-amber-50 border border-amber-100 rounded-lg px-4 py-3 mb-5">Trường hợp tài khoản cần xác thực trước khi hủy: TINGEE trả về đường dẫn để Khách hàng nhập mã OTP.</p>
-            <div class="overflow-x-auto rounded-xl border border-gray-100">
-              <table class="w-full text-sm table-responsive">
-                <thead><tr class="bg-gray-50 text-gray-400 text-xs">
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Trường</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold">Bắt buộc</th>
-                  <th class="text-left px-3 sm:px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
-                </tr></thead>
+          <div class="px-5 sm:px-7 pb-7 border-t border-gray-100">
+            <p class="text-gray-600 text-sm mt-5 mb-4 leading-relaxed">Hủy liên kết tài khoản ngân hàng với dịch vụ Direct Debit. Tuỳ cấu hình, Khách hàng có thể cần xác thực OTP trước khi hủy.</p>
+
+            <!-- Ghi chú OTP -->
+            <div class="flex items-start gap-3 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3.5 mb-5">
+              <svg class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              <div>
+                <p class="text-xs font-bold text-amber-700 mb-1">Lưu ý xác thực OTP</p>
+                <p class="text-xs text-amber-600 leading-relaxed">Nếu tài khoản yêu cầu xác thực trước khi hủy, TINGEE sẽ trả về đường dẫn để Khách hàng nhập mã OTP xác nhận.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Tham số Request</p>
+            </div>
+            <div class="rounded-xl border border-gray-100 overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 text-gray-400 text-xs">
+                    <th class="text-left px-4 py-2.5 font-semibold">Trường</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Kiểu</th>
+                    <th class="text-left px-4 py-2.5 font-semibold">Bắt buộc</th>
+                    <th class="text-left px-4 py-2.5 font-semibold hide-mobile">Mô tả</th>
+                  </tr>
+                </thead>
                 <tbody class="divide-y divide-gray-50">
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">requestId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">subscriptionId</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">tokenRef</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
-                  <tr><td class="px-3 sm:px-4 py-2 font-mono text-xs text-primary">returnUrl</td><td class="px-3 sm:px-4 py-2 text-gray-400 text-xs hide-mobile">string</td><td class="px-3 sm:px-4 py-2"><span class="text-primary text-xs font-semibold">Có</span></td><td class="px-3 sm:px-4 py-2 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">requestId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">ID request đến TINGEE (UUID)</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">subscriptionId</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">ID tài khoản đã liên kết (UUID)</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">tokenRef</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Mã tham chiếu tài khoản khách hàng</td></tr>
+                  <tr class="bg-white"><td class="px-4 py-2.5 font-mono text-xs text-primary font-semibold">returnUrl</td><td class="px-4 py-2.5 text-gray-400 text-xs hide-mobile">string</td><td class="px-4 py-2.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-bg text-primary">Có</span></td><td class="px-4 py-2.5 text-gray-500 text-xs hide-mobile">Link redirect sau khi hoàn tất</td></tr>
                 </tbody>
               </table>
             </div>
