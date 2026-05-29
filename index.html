@@ -191,6 +191,7 @@
       <a href="#overview"   class="nav-link" data-section="overview">Tổng quan</a>
       <a href="#flow"       class="nav-link" data-section="flow">Luồng hoạt động</a>
       <a href="#operations" class="nav-link" data-section="operations">Vận hành</a>
+      <a href="#onepay"     class="nav-link" data-section="onepay">OnePay</a>
       <a href="#api"        class="nav-link" data-section="api">Danh sách API</a>
       <a href="#webhook"    class="nav-link" data-section="webhook">Webhook</a>
       <a href="#contact"    class="nav-link" data-section="contact">Liên hệ</a>
@@ -219,6 +220,7 @@
       <a href="#overview"   class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="overview" onclick="closeMobileMenu()">Tổng quan</a>
       <a href="#flow"       class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="flow" onclick="closeMobileMenu()">Luồng hoạt động</a>
       <a href="#operations" class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="operations" onclick="closeMobileMenu()">Vận hành</a>
+      <a href="#onepay"     class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="onepay" onclick="closeMobileMenu()">OnePay</a>
       <a href="#api"        class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="api" onclick="closeMobileMenu()">Danh sách API</a>
       <a href="#webhook"    class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="webhook" onclick="closeMobileMenu()">Webhook</a>
       <a href="#contact"    class="mobile-nav-link px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-all" data-section="contact" onclick="closeMobileMenu()">Liên hệ</a>
@@ -1263,6 +1265,288 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ONEPAY PARTNER ════════════════════════════ -->
+<section id="onepay" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header with OnePay logo -->
+    <div class="text-center mb-12 reveal">
+      <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Đối tác thanh toán</p>
+      <div class="flex items-center justify-center gap-4 mb-5">
+        <img src="https://www.onepay.vn/wp-content/uploads/2022/01/Logo_OnePay.svg"
+             alt="OnePay Logo" class="h-10 w-auto object-contain"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+        <div class="hidden items-center gap-2">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+          </div>
+          <span class="text-xl font-extrabold text-gray-800">OnePay</span>
+        </div>
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Thông tin vận hành & kinh doanh</h2>
+      <p class="text-gray-500 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+        OnePay là cổng thanh toán trung gian được NHNN cấp phép (số 06/GP-NHNN). Để sử dụng Direct Debit qua TINGEE, doanh nghiệp cần mở tài khoản đối tác với OnePay.
+      </p>
+    </div>
+
+    <!-- 3 columns: Setup Steps / Banks / Fees -->
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- ── 1. Quy trình mở tài khoản OnePay ── -->
+      <div class="reveal lg:col-span-1 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 text-white">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold">Quy trình mở tài khoản</h3>
+            <p class="text-xs text-gray-400">Đăng ký đối tác OnePay</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Step 1 -->
+          <div class="flex gap-3">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+              <div class="w-0.5 bg-gray-600 flex-1 mt-1 mb-0" style="min-height:20px"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-white">Liên hệ OnePay</p>
+              <p class="text-xs text-gray-400 mt-1">Gửi yêu cầu hợp tác qua website <span class="text-primary-light">onepay.vn</span> hoặc hotline <span class="text-primary-light">024 3936 6668</span></p>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="flex gap-3">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
+              <div class="w-0.5 bg-gray-600 flex-1 mt-1" style="min-height:20px"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-white">Ký kết hợp đồng</p>
+              <p class="text-xs text-gray-400 mt-1">Ký hợp đồng ĐVCNTT với OnePay kèm Phụ lục 01 về dịch vụ Direct Debit</p>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="flex gap-3">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">3</div>
+              <div class="w-0.5 bg-gray-600 flex-1 mt-1" style="min-height:20px"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-white">Nhận thông tin cấu hình</p>
+              <p class="text-xs text-gray-400 mt-1">OnePay cấp <strong class="text-white">Merchant ID, Secret Key</strong> và thông tin môi trường sandbox/production</p>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="flex gap-3">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">4</div>
+              <div class="w-0.5 bg-gray-600 flex-1 mt-1" style="min-height:20px"></div>
+            </div>
+            <div class="pb-4">
+              <p class="text-sm font-semibold text-white">Cấu hình trên TINGEE</p>
+              <p class="text-xs text-gray-400 mt-1">Nhập thông tin OnePay vào hệ thống TINGEE để kích hoạt tính năng Direct Debit</p>
+            </div>
+          </div>
+          <!-- Step 5 -->
+          <div class="flex gap-3">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center shrink-0">✓</div>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-green-400">Sẵn sàng hoạt động</p>
+              <p class="text-xs text-gray-400 mt-1">Bắt đầu thu phí tự động qua Direct Debit</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://www.onepay.vn/lien-he/lien-he-hop-tac/" target="_blank"
+           class="mt-6 w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
+          Đăng ký với OnePay
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+
+      <!-- ── 2 & 3: Banks + Fees stacked ── -->
+      <div class="lg:col-span-2 flex flex-col gap-6">
+
+        <!-- Ngân hàng chấp nhận -->
+        <div class="reveal bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-gray-900">Ngân hàng chấp nhận Direct Debit</h3>
+              <p class="text-xs text-gray-400">Theo Phụ lục 01 hợp đồng OnePay — 6 ngân hàng liên kết</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <!-- Vietinbank -->
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">VTB</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">Vietinbank</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 2 triệu/GD</p>
+              <p class="text-[10px] text-gray-500">≤ 5 triệu/ngày</p>
+            </div>
+            <!-- MB -->
+            <div class="bg-green-50 border border-green-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-green-600 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">MB</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">Ngân hàng MB</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 2 triệu/GD</p>
+              <p class="text-[10px] text-gray-400 italic">Không giới hạn/ngày</p>
+            </div>
+            <!-- Sacombank -->
+            <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-yellow-500 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">SCB</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">Sacombank</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 2 triệu/GD</p>
+              <p class="text-[10px] text-gray-400 italic">Không giới hạn/ngày</p>
+            </div>
+            <!-- MSB -->
+            <div class="bg-red-50 border border-red-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-red-600 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">MSB</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">MSB</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 2 triệu/GD</p>
+              <p class="text-[10px] text-gray-500">≤ 5 triệu/ngày</p>
+            </div>
+            <!-- BIDV -->
+            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">BIDV</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">BIDV</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 2 triệu/GD</p>
+              <p class="text-[10px] text-gray-500">≤ 5 triệu/ngày</p>
+            </div>
+            <!-- VPbank -->
+            <div class="bg-purple-50 border border-purple-100 rounded-xl p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
+                  <span class="text-white text-[9px] font-extrabold">VPB</span>
+                </div>
+                <span class="text-xs font-bold text-gray-800">VPbank</span>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">≤ 1 triệu/GD</p>
+              <p class="text-[10px] text-gray-500">≤ 5 triệu/ngày</p>
+            </div>
+          </div>
+
+          <p class="text-[10px] text-gray-400 mt-3 italic">* Danh sách theo Phụ lục 01 – Hợp đồng OnePay. Có thể được cập nhật thêm ngân hàng theo thỏa thuận.</p>
+        </div>
+
+        <!-- Biểu phí dịch vụ -->
+        <div class="reveal bg-gradient-to-br from-primary-bg to-white border border-red-100 rounded-2xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-primary-bg border border-red-200 rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-gray-900">Biểu phí dịch vụ OnePay</h3>
+              <p class="text-xs text-gray-400">Áp dụng theo Phụ lục 01 – Phí đã bao gồm VAT 10%</p>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <!-- Fee 1 -->
+            <div class="bg-white rounded-xl border border-red-100 p-4">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Phí xử lý giao dịch</p>
+                  <p class="text-2xl font-extrabold text-primary mt-1">1.100 <span class="text-sm font-semibold text-gray-600">đ</span></p>
+                  <p class="text-xs text-gray-400 mt-0.5">mỗi giao dịch</p>
+                </div>
+              </div>
+            </div>
+            <!-- Fee 2 -->
+            <div class="bg-white rounded-xl border border-red-100 p-4">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Phí thanh toán</p>
+                  <p class="text-2xl font-extrabold text-primary mt-1">0,44 <span class="text-sm font-semibold text-gray-600">%</span></p>
+                  <p class="text-xs text-gray-400 mt-0.5">giá trị giao dịch</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Example calculation -->
+          <div class="bg-white rounded-xl border border-dashed border-red-200 p-4">
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Ví dụ tính phí — Hóa đơn 500.000đ</p>
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Phí xử lý giao dịch</span>
+                <span class="font-semibold text-gray-800">1.100đ</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Phí thanh toán (0,44% × 500.000)</span>
+                <span class="font-semibold text-gray-800">2.200đ</span>
+              </div>
+              <div class="border-t border-gray-100 pt-2 flex justify-between text-sm">
+                <span class="font-bold text-gray-800">Tổng phí dịch vụ</span>
+                <span class="font-extrabold text-primary">3.300đ</span>
+              </div>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-2 italic">* Phí đã bao gồm VAT 10%. Phí chỉ áp dụng giao dịch thực hiện thành công.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Contact note -->
+    <div class="mt-8 reveal flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50 rounded-2xl px-6 py-5 border border-gray-100">
+      <div class="flex items-center gap-3">
+        <img src="https://www.onepay.vn/wp-content/uploads/2022/01/Logo_OnePay.svg"
+             alt="OnePay" class="h-7 w-auto object-contain"
+             onerror="this.style.display='none'"/>
+        <div>
+          <p class="text-sm font-bold text-gray-800">Cần hỗ trợ đăng ký?</p>
+          <p class="text-xs text-gray-500">Liên hệ OnePay để được tư vấn và ký kết hợp đồng</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 shrink-0">
+        <a href="tel:+842439366668" class="flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs font-semibold px-3 py-2 rounded-lg hover:border-primary hover:text-primary transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          024 3936 6668 (HN)
+        </a>
+        <a href="https://www.onepay.vn/lien-he/lien-he-hop-tac/" target="_blank"
+           class="flex items-center gap-1.5 bg-primary text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Liên hệ hợp tác
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
